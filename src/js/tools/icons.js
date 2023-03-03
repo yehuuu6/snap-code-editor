@@ -6,12 +6,13 @@ function setIcons(items) {
     let myExtension = "";
     myIcon.classList = "";
     let customText = myText.replace(/\/\//g, "");
-    customText = customText.replace("Currently editing: ", "");
+    customText = customText.replace("Current file: ", "");
     if (customText.includes(".")) {
       myExtension = myText.split(".")[1].toLowerCase();
     } else {
       if (customText == "LICENSE" || customText == "license") {
-        myIcon.classList.add("fas", "fa-file-alt");
+        item.classList.add("license");
+        myIcon.classList.add("fa-solid", "fa-key");
       } else if (customText == "README" || customText == "readme") {
         myIcon.classList.add("fas", "fa-file-alt");
       } else {
@@ -87,6 +88,9 @@ function setIcons(items) {
       } else if (customText.includes("plugin")) {
         item.classList.add("plugin");
         myIcon.classList.add("fas", "fa-plug");
+      } else if (customText == "LICENSE") {
+        item.classList.add("license");
+        myIcon.classList.add("fa-solid", "fa-key");
       } else {
         myIcon.classList.add("fas", "fa-folder");
       }
@@ -133,7 +137,15 @@ function setIcons(items) {
     } else if (myExtension == "rar") {
       myIcon.classList.add("fas", "fa-file-archive");
     } else {
-      myIcon.classList.add("fas", "fa-file");
+      if (customText == "LICENSE") {
+        item.classList.add("license");
+        myIcon.classList.add("fa-solid", "fa-key");
+      } else if (customText.includes("git")) {
+        item.classList.add("git");
+        myIcon.classList.add("fa-brands", "fa-git-alt");
+      } else {
+        myIcon.classList.add("fas", "fa-file");
+      }
     }
   });
 }
