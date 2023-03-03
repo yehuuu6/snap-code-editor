@@ -25,7 +25,8 @@ function createWindow() {
   });
   // Get Code
   ipc.handle("get-code", (event, file, name) => {
-    extension = file.split(".")[1].toLowerCase();
+    extension = path.extname(file);
+    console.log(extension);
     let lines = fs.readFileSync(path.join(__dirname, file), "utf8");
     event.sender.send("set-code", extension, file, name, lines);
   });
@@ -59,8 +60,8 @@ function createWindow() {
 
   ipc.on("get-folder-content", (event, name) => {
     fs.readdir(path.join(__dirname, name), (err, files) => {
-      let info2 = filterContent(files, name);
-      event.sender.send("set-explorer", info2[0], info2[1]);
+      let info = filterContent(files, name);
+      event.sender.send("set-explorer", info[0], info[1]);
     });
   });
 
