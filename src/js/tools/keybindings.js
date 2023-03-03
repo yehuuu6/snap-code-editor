@@ -6,9 +6,9 @@ document.addEventListener("keydown", (e) => {
   }
 });
 // Add keybind to run command
-document.addEventListener("keydown", (e) => {
+/*document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.key === "r") {
     e.preventDefault();
     run();
   }
-});
+});*/
