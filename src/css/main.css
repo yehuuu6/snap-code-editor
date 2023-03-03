@@ -241,6 +241,50 @@ body{
     width: 100%;
     height: 100%;
 }
+.editor section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.editor section h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: aliceblue;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.editor section p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #959595;
+    margin-bottom: 5px;
+}
+.editor section a{
+    font-size: 1rem;
+    border-radius: .1rem;
+    font-weight: 400;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 25px;
+    border: 2px solid #0a99b2;
+    padding: 5px 20px;
+}
+.editor section a:hover{
+    background: #0a99b2;
+    color: inherit;
+}
+.editor section .btns{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+}
 .tabs{
     display: flex;
     width: 100%;
