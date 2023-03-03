@@ -2,7 +2,7 @@
 
 > I am working on this project to learn Electron framework. The best way to learn something is accomplished by actually using it.
 
-![Thumbnail](doc/thumb.PNG)
+![Thumbnail](dot/thumb.PNG)
 
 ## Stack
 
