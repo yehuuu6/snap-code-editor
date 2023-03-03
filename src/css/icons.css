@@ -16,6 +16,15 @@
 .c-sharp i{
     color: #178600;
 }
+.license i{
+    color: #d9ff1a;
+}
+.git i{
+    color: #f34f29;
+}
+.markdown i{
+    color: #083fa1;
+}
 .dart i{
     color: #00b4ab;
 }
