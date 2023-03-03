@@ -9,7 +9,7 @@ const getCurrentTime = () => {
 };
 function getExtension(extension) {
   let aceExtension = "text";
-  switch (extension) {
+  switch (extension.split(".")[1]) {
     case "js":
       aceExtension = "javascript";
       break;
@@ -24,6 +24,9 @@ function getExtension(extension) {
       break;
     case "json":
       aceExtension = "json";
+      break;
+    case "md":
+      aceExtension = "markdown";
       break;
     default:
       aceExtension = "text";
