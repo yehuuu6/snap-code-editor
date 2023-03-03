@@ -5,6 +5,11 @@ let isEdited = false;
 let activeFile;
 
 function createEditor(_extension, _file, _lines) {
+  // Clear the editor container
+  const welcome = document.getElementById("welcome-page");
+  try {
+    welcome.remove();
+  } catch (e) {}
   editorSaveCheck = _lines;
   activeFile = _file;
   _file = _file.replace(/\/\//g, "");
