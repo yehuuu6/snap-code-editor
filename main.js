@@ -26,7 +26,6 @@ function createWindow() {
   // Get Code
   ipc.handle("get-code", (event, file, name) => {
     extension = path.extname(file);
-    console.log(extension);
     let lines = fs.readFileSync(path.join(__dirname, file), "utf8");
     event.sender.send("set-code", extension, file, name, lines);
   });
