@@ -127,6 +127,7 @@ function setIcons(items) {
       item.classList.add("sql");
       myIcon.classList.add("fas", "fa-database");
     } else if (myExtension == "md") {
+      item.classList.add("markdown");
       myIcon.classList.add("fab", "fa-markdown");
     } else if (myExtension == "yml") {
       myIcon.classList.add("fab", "fa-yaml");
