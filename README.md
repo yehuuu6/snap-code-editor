@@ -8,7 +8,6 @@
 
 - [Electron](https://www.electronjs.org/) - Build cross-platform desktop apps with JavaScript, HTML, and CSS
 - [Ace](https://ace.c9.io/) - Ace is an embeddable code editor written in JavaScript
-- [Font Awesome](https://fontawesome.com/) - Font Awesome is the Internet's icon library and toolkit
 
 ## License
 
