@@ -1,0 +1,66 @@
+.javascript i{
+    color:  #f7df1e;
+}
+.cpp i{
+    color: #00599c;
+}
+.python i{
+    color: #3572a5;
+}
+.c i{
+    color: #a8b9cc;
+}
+.json i{
+    color: #f1e05a;
+}
+.c-sharp i{
+    color: #178600;
+}
+.dart i{
+    color: #00b4ab;
+}
+.tsx i{
+    color: #2b7489;
+}
+.swift i{
+    color: #ffac45;
+}
+.jsx i{
+    color: #61dafb;
+}
+.typescript i{
+    color: #2b7489;
+}
+.java i{
+    color: #b07219;
+}
+.plugin i{
+    color: #f1e05a !important;
+}
+.go i{
+    color: #00add8;
+}
+.kotlin i{
+    color: #f18e33;
+}
+.sql i{
+    color: #003b57;
+}
+.php i{
+    color: #4f5d95;
+}
+.npm i{
+    color: #cb3837;
+}
+.folder i{
+    color: #13a4a4;
+}
+.css i{
+    color: #0a99b2;
+}
+.html i{
+    color: #e34c26;
+}
+.node i{
+    color: #3c873a;
+}

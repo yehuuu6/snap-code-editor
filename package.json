@@ -1,0 +1,17 @@
+{
+  "name": "snap-code-editor",
+  "version": "1.0.0",
+  "description": "A simple code editor created with electron framework",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "sscorpi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^23.1.1"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
+  }
+}

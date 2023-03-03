@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <script src="js/plugins/font/fontawesome.js"></script>
+    <script defer src="js/renderers/explorer.js"></script>
+    <script defer src="js/renderers/editor.js"></script>
+    <script defer src="js/renderers/router.js"></script>
+    <script defer src="js/tools/icons.js"></script>
+    <script defer src="js/tools/functions.js"></script>
+    <script defer src="js/tools/logs.js"></script>
+    <script defer src="js/renderers/menuBar.js"></script>
+    <script defer src="js/renderers/terminal.js"></script>
+    <script defer src="js/tools/keybindings.js"></script>
+    <script defer src="js/renderers/file.js"></script>
+    <script defer src="js/plugins/ace/ace.js"></script>
+    <script defer src="js/plugins/ace/ext-language_tools.js"></script>
+    <title>Snap Code Editor</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="custom-frame">
+        <div class="left-frame">
+          <div class="frame-item">
+            <button>File</button>
+            <div id="file-settings" class="dropdown">
+              <div class="setting-item">
+                <span>New File</span>
+                <span>Ctrl + N</span>
+              </div>
+              <div class="setting-item">
+                <span>New Folder</span>
+                <span>Ctrl + D</span>
+              </div>
+              <div class="setting-item">
+                <span>Open Folder</span>
+                <span>Ctrl + O</span>
+              </div>
+              <div id="save-file" class="setting-item">
+                <span>Save</span>
+                <span>Ctrl + S</span>
+              </div>
+            </div>
+          </div>
+          <div class="frame-item">
+            <button>Edit</button>
+            <div id="edit-settings" class="dropdown">
+              <div class="setting-item">
+                <span>Undo</span>
+                <span>Ctrl + Z</span>
+              </div>
+              <div class="setting-item">
+                <span>Redo</span>
+                <span>Ctrl + Y</span>
+              </div>
+              <div class="setting-item">
+                <span>Copy</span>
+                <span>Ctrl + C</span>
+              </div>
+              <div class="setting-item">
+                <span>Cut</span>
+                <span>Ctrl + X</span>
+              </div>
+              <div class="setting-item">
+                <span>Paste</span>
+                <span>Ctrl + V</span>
+              </div>
+              <div class="setting-item">
+                <span>Find</span>
+                <span>Ctrl + F</span>
+              </div>
+              <div class="setting-item">
+                <span>Replace</span>
+                <span>Ctrl + H</span>
+              </div>
+            </div>
+          </div>
+          <div class="frame-item">
+            <button>Run</button>
+            <div id="run-settings" class="dropdown">
+              <div id="runCommand" class="setting-item">
+                <span>Run</span>
+                <span>Ctrl + R</span>
+              </div>
+              <div id="clearHistory" class="setting-item">
+                <span>Clear History</span>
+                <span>Ctrl + T</span>
+              </div>
+            </div>
+          </div>
+          <div class="frame-item">
+            <button>Help</button>
+            <div id="help-settings" class="dropdown">
+              <div class="setting-item">
+                <span>Documentation</span>
+              </div>
+              <div class="setting-item">
+                <span>GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="middle-frame">
+          <h3 id="app-title">Snap Code Editor</h3>
+        </div>
+        <div class="right-frame">
+          <div id="minimizeBtn" class="frame-item app-btn">
+            <i class="fa-solid fa-minus"></i>
+          </div>
+          <div id="maximizeBtn" class="frame-item app-btn">
+            <i class="fa-regular fa-square"></i>
+          </div>
+          <div id="closeBtn" class="frame-item app-btn red-bg">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="explorer-cont">
+          <div class="file-explorer">
+            <div class="explorer-header">
+              <h3>File Explorer</h3>
+              <i class="fa-solid fa-rotate-right"></i>
+            </div>
+            <h3 id="router" class="wTitle">
+              <div id="/">/root</div>
+            </h3>
+            <div id="workspace" class="workspace"></div>
+          </div>
+        </div>
+        <div id="editorContainer" class="editor">
+          <div class="tabs">
+            <div id="current-file" class="tab-item set-icon">
+              <span>Select a file to start editing. </span>
+              <i class="fa-regular fas-file"></i>
+              <div style="display: none" id="__dot">
+                <i class="fas fa-circle"></i>
+                <span>(edited)</span>
+              </div>
+            </div>
+            <div id="alerts" class="tab-item">
+              <i id="history" class="fa-solid fa-chevron-down history-btn"></i>
+              <input id="logger" spellcheck="false" maxlength="59" />
+              <span class="log-time">null:null</span>
+
+              <ul id="history-list" class="logs-list">
+                <li class="log-item" style="color: orange">
+                  Warning: Snap Code Editor is still in development. Please use
+                  at your own risk. Visit GitHub page for more information.<span
+                    style="font-size: 30px"
+                    class="log-time"
+                    >💕</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="left">
+          <div class="footer-item">
+            <div id="go-error">
+              <i class="fa-regular fa-circle-xmark"></i>
+              <span id="error-count">0</span>
+            </div>
+            <div id="go-warning">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span id="warning-count">0</span>
+            </div>
+            <div id="go-info">
+              <i class="fa-solid fa-circle-info"></i>
+              <span id="info-count">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div id="cursor-pos" class="footer-item">Row 0, Column 0</div>
+          <div class="footer-item">
+            <div>Alpha V1.0.0 <i class="fa-solid fa-code-branch"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
