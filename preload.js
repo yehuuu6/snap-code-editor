@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld("snapExplorerAPI", {
   // Renderer-to-main communication
 
   getContent: (name) => ipc.send("get-folder-content", name),
+  getFolders: (name) => ipc.invoke("get-folders", name),
 
   // Main-to-renderer communication
   setExplorer: (callback) => {

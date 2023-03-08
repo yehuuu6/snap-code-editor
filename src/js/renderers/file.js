@@ -40,8 +40,14 @@ const saveFile = (openedFile) => {
 };
 
 const saveBtn = document.getElementById("save-file");
+const openFolderBtn = document.getElementById("open-folder-menu");
+
 saveBtn.addEventListener("click", () => {
   saveFile(openedFile.replace(/\/\//g, ""));
+});
+
+openFolderBtn.addEventListener("click", () => {
+   openNewFolder(); 
 });
 
 window.snapEditorAPI.fileSaved((file) => {

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const ipc = ipcMain;
 const fs = require("fs");
@@ -26,18 +26,20 @@ function createWindow() {
   // Get Code
   ipc.handle("get-code", (event, file, name) => {
     extension = path.extname(file);
-    let lines = fs.readFileSync(path.join(__dirname, file), "utf8");
+    let lines = fs.readFileSync(path.join(folderPath, file), "utf8");
     event.sender.send("set-code", extension, file, name, lines);
   });
   // Filter Folder Content
-  function filterContent(list, __path) {
+  function filterContent(selectedFolder, list, __path) {
     let result = [];
     let _dirs = [];
     let _files = [];
     list.forEach((file) => {
-      if (fs.lstatSync(path.join(__dirname, __path, file)).isDirectory()) {
+      if (fs.lstatSync(path.join(selectedFolder, __path, file)).isDirectory()) {
         _dirs.push(file);
-      } else if (fs.lstatSync(path.join(__dirname, __path, file)).isFile()) {
+      } else if (
+        fs.lstatSync(path.join(selectedFolder, __path, file)).isFile()
+      ) {
         _files.push(file);
       }
     });
@@ -47,26 +49,35 @@ function createWindow() {
   }
   // Handle Explorer
 
-  fs.readdir(__dirname, (err, files) => {
-    if (err) console.log(err);
+  let folderPath;
 
-    let info = filterContent(files, "");
-    win.webContents.on("did-finish-load", () => {
-      win.webContents.send("set-explorer", info[0], info[1]);
-    });
+  ipc.handle("get-folders", (event) => {
+    // Open Folder Dialog
+    dialog
+      .showOpenDialog(win, { properties: ["openDirectory"] })
+      .then((res) => {
+        if (res.canceled) return;
+        folderPath = res.filePaths[0];
+        fs.readdir(res.filePaths[0], (err, files) => {
+          if (err) console.log(err);
+          let info = filterContent(res.filePaths[0], files, "");
+          event.sender.send("set-explorer", info[0], info[1]);
+        });
+      });
   });
+
   // Get Folder Content
 
   ipc.on("get-folder-content", (event, name) => {
-    fs.readdir(path.join(__dirname, name), (err, files) => {
-      let info = filterContent(files, name);
+    fs.readdir(path.join(folderPath, name), (err, files) => {
+      let info = filterContent(folderPath, files, name);
       event.sender.send("set-explorer", info[0], info[1]);
     });
   });
 
   // Save File
   ipc.handle("save-file", (event, file, lines) => {
-    fs.writeFile(path.join(__dirname, file), lines, (err) => {
+    fs.writeFile(path.join(folderPath, file), lines, (err) => {
       if (err) event.sender.send("file-error", err);
       else event.sender.send("file-saved", file);
     });
