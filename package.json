@@ -4,14 +4,22 @@
   "description": "A simple code editor created with electron framework",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "author": "sscorpi",
   "license": "MIT",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
     "electron": "^23.1.1"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "path": "^0.12.7"
   }
 }

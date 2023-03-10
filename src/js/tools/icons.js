@@ -59,6 +59,7 @@ function setIcons(items) {
         myIcon.classList.add("fa-regular", "fa-file-code");
       }
     } else if (myExtension == "py") {
+      item.classList.add("python");
       myIcon.classList.add("fab", "fa-python");
     } else if (myExtension == "txt") {
       myIcon.classList.add("fas", "fa-file-alt");

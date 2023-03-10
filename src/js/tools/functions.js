@@ -49,7 +49,6 @@ function openNewFolder() {
       const _file = [file, [1]];
       fileTree.push(_file);
     });
-
     fileTree.forEach((subArray) => {
       let pathString = "";
       let explorerElement = document.createElement("div");
